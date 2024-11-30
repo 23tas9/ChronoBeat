@@ -8,6 +8,8 @@
 **/App/resource/
 **/App/temp/
 
+**/App/songinfo.json
+
 # User-specific files
 *.rsuser
 *.suo
