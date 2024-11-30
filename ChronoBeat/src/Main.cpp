@@ -13,13 +13,6 @@
 void Main() {
 	Window::SetTitle(Globals::gameVersion.withTitle(Globals::gameTitle));
 
-	Window::Resize(Globals::windowSize);
-	Scene::SetResizeMode(ResizeMode::Keep);
-
-	Window::SetFullscreen(true);
-
-	Scene::SetBackground(Globals::Theme::backgroundBase);
-
 	///////////////////
 	// Asset register
 	///////////////////
@@ -95,6 +88,13 @@ void Main() {
 	Console << U"Registered";
 	Console << Globals::songInfos;
 #endif
+
+	Window::Resize(Globals::windowSize);
+	Scene::SetResizeMode(ResizeMode::Keep);
+
+	Window::SetFullscreen(true);
+
+	Scene::SetBackground(Globals::Theme::backgroundBase);
 
 	while (System::Update()) {
 		if (not manager.update()) break;
