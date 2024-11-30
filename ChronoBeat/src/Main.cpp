@@ -84,34 +84,11 @@ void Main() {
 	/////////////////////
 	// songs and jacket
 	/////////////////////
-	for (const String& path : FileSystem::DirectoryContents(Globals::BeatmapBaseDir, Recursive::No)) {
-		const FilePath infoPath = FileSystem::PathAppend(path, U"info.ini");
+	const JSON infoJson = JSON::Load(Resource(U"songinfo.json"));
+	for (const JSON& data : infoJson.arrayView()) {
+		SongInfo info{ data };
 
-		SongInfo info{ path, INI{ infoPath } };
-
-		const String songName = info.getSongAssetName();
-
-		//Console << U"{}/{}/{}"_fmt(Globals::BeatmapBaseDir, FileSystem::BaseName(path), info.songPath);
-
-		const FilePath basePath = FileSystem::PathAppend(Globals::BeatmapBaseDir, FileSystem::BaseName(path));
-
-		if (not AudioAsset::Register(
-			songName,
-			Resource(FileSystem::PathAppend(basePath, info.songPath))
-		)) throw AssetRegistError{ songName };
-			
-		AudioAsset::Load(songName);
-
-		const String textureName = info.getJacketAssetName();
-
-		if(not TextureAsset::Register(
-			textureName,
-			Resource(FileSystem::PathAppend(basePath, info.jacketPath))
-		)) throw AssetRegistError{ textureName };
-
-		TextureAsset::Load(textureName);
-
-		Globals::songInfos << info;
+		Globals::songInfos << info.registerAsset();
 	}
 
 #if SIV3D_BUILD(DEBUG)
