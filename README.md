@@ -2,16 +2,16 @@
 
 ![Title Image](https://raw.githubusercontent.com/23tas9/ChronoBeat/refs/heads/master/ChronoBeat/App/resource/images/title.png)
 
-‚±‚ÌƒQ[ƒ€‚ÍOpenSiv3D‚É‚æ‚Á‚Ä§ì‚³‚ê‚½‰¹ƒQ[‚Å‚·B
-ƒoƒO•ñ‚È‚Ç‹CŒy‚ÉIssue, X‚ÖDM‚¨Šè‚¢‚µ‚Ü‚·B
+ã“ã®ã‚²ãƒ¼ãƒ ã¯OpenSiv3Dã«ã‚ˆã£ã¦åˆ¶ä½œã•ã‚ŒãŸéŸ³ã‚²ãƒ¼ã§ã™ã€‚
+ãƒã‚°å ±å‘Šãªã©æ°—è»½ã«Issue, Xã¸DMãŠé¡˜ã„ã—ã¾ã™ã€‚
 
-ƒ|ƒXƒg‚·‚éÛ‚ÌƒnƒbƒVƒ…ƒ^ƒO‚Í #ChronoBeat ‚Å‚¨Šè‚¢‚µ‚Ü‚·B
+ãƒã‚¹ãƒˆã™ã‚‹éš›ã®ãƒãƒƒã‚·ãƒ¥ã‚¿ã‚°ã¯ #ChronoBeat ã§ãŠé¡˜ã„ã—ã¾ã™ã€‚
 
-## û˜^‹È | Included Songs
+## åéŒ²æ›² | Included Songs
 <table>
   <thead>
     <tr>
-      <th>ƒ^ƒCƒgƒ‹ | Title</th><th>ƒA[ƒeƒBƒXƒg | Artist</th><th>’Ç‰Áƒo[ƒWƒ‡ƒ“ | Added version</th>
+      <th>ã‚¿ã‚¤ãƒˆãƒ« | Title</th><th>ã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆ | Artist</th><th>è¿½åŠ ãƒãƒ¼ã‚¸ãƒ§ãƒ³ | Added version</th>
     </tr>
   </thead>
   <tr>
@@ -19,26 +19,26 @@
   </tr>
 </table>
 
-## ‘€ì•û–@ | Controlls
+## æ“ä½œæ–¹æ³• | Controlls
 <table>
   <thead>
     <tr>
-      <th>“®ì | Controll</th><th>ƒL[ | Key</th>
+      <th>å‹•ä½œ | Controll</th><th>ã‚­ãƒ¼ | Key</th>
     </tr>
   </thead>
   <tr>
-    <td>ƒm[ƒcƒNƒŠƒbƒN | Note Click</td><td>D / F / J / K</td>
+    <td>ãƒãƒ¼ãƒ„ã‚¯ãƒªãƒƒã‚¯ | Note Click</td><td>D / F / J / K</td>
   </tr>
   <tr>
-    <td>ƒQ[ƒ€I—¹ | End App</td><td>Escape</td>
+    <td>ã‚²ãƒ¼ãƒ çµ‚äº† | End App</td><td>Escape</td>
   </tr>
   <tr>
-      <td>‘I‹È | Song Selecttion</td><td>© / ¨</td>
+      <td>é¸æ›² | Song Selecttion</td><td>â† / â†’</td>
   </tr>
   <tr>
-      <td>“ïˆÕ“x•ÏX | Change Difficulty</td><td>ª / «</td>
+      <td>é›£æ˜“åº¦å¤‰æ›´ | Change Difficulty</td><td>â†‘ / â†“</td>
   </tr>
   <tr>
-      <td>‹È‚ÌŒˆ’è | Select</td><td>Enter</td>
+      <td>æ›²ã®æ±ºå®š | Select</td><td>Enter</td>
   </tr>
 </table>
