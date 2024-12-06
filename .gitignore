@@ -5,7 +5,9 @@
 # Chrono Beat
 **/App/beatmap/
 
-**/App/resource/
+**/App/resource/bgm/
+**/App/resource/font/
+**/App/resource/se/
 **/App/temp/
 
 **/App/songinfo.json
