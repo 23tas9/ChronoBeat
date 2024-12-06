@@ -1,4 +1,7 @@
 # Chrono Beat
+
+![Title Image](https://raw.githubusercontent.com/23tas9/ChronoBeat/refs/heads/master/ChronoBeat/App/resource/images/title.png)
+
 このゲームはOpenSiv3Dによって制作された音ゲーです。
 バグ報告など気軽にIssue, XへDMお願いします。
 

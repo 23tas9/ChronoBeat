@@ -16,8 +16,13 @@ Resource(resource/se/move-cursor.mp3)
 Resource(resource/se/song-selected.mp3)
 Resource(resource/se/clock-click.mp3)
 
+Resource(songinfo.json)
+
 Resource(beatmap/Dogbite/song.wav)
 Resource(beatmap/Dogbite/jacket.png)
+Resource(beatmap/Dogbite/easy.json)
+Resource(beatmap/Dogbite/normal.json)
+Resource(beatmap/Dogbite/hard.json)
 
 //
 //	Shaders

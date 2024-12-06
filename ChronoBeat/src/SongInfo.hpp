@@ -13,9 +13,7 @@ struct BeatmapInfo {
 
 	BeatmapInfo(const FilePath& _jsonPath = U"", double _difficulty = .0) :
 		jsonPath{ _jsonPath },
-		difficulty{ _difficulty } {
-
-	}
+		difficulty{ _difficulty } { }
 };
 
 struct SongInfo {
@@ -35,33 +33,13 @@ struct SongInfo {
 
 	SongInfo(){}
 
-	SongInfo(const FilePath& dir, const INI& info) {
-		title = info[U"info.title"];
-		artist = info[U"info.artist"];
+	SongInfo(const JSON&);
 
-		bpm = info[U"info.bpm"];
+	SongInfo registerAsset() const;
 
-		jacketPath = info[U"info.jacket_path"];
-		songPath = info[U"info.song_path"];
+	inline String getJacketAssetName() const;
 
-		const Array<FilePath> beatmapPaths = info[U"info.beatmap"].split(U',').map([](const FilePath& path) { return path.trimmed(); });
-		const Array<double> beatmapDifficulties = info[U"info.difficulty"].split(U',').map([](const String& value) { return Parse<double>(value); });
-
-		for (int32 i : step(static_cast<int32>(SongDifficulty::Chronos) + 1)) {
-			beatmapInfos[static_cast<SongDifficulty>(i)] = BeatmapInfo{
-				dir + beatmapPaths.at(i),
-				beatmapDifficulties.at(i)
-			};
-		}
-	}
-
-	inline String getJacketAssetName() const {
-		return U"Jacket.{}"_fmt(title);
-	}
-
-	inline String getSongAssetName() const {
-		return U"Song.{}"_fmt(title);
-	}
+	inline String getSongAssetName() const;
 
 	static ColorF GetColor(const SongDifficulty& difficulty) {
 		if (difficulty == SongDifficulty::Easy) return EasyColor;

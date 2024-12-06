@@ -12,7 +12,7 @@ struct Beatmap {
 
 	Beatmap() = default;
 
-	Beatmap(const FilePath& path, bool timingOffset = true) : json{ JSON::Load(path) } {
+	Beatmap(const FilePath& path, bool timingOffset = true) : json{ JSON::Load(Resource(path)) } {
 		bpm = json[U"BPM"].get<double>();
 
 		const double offset =
