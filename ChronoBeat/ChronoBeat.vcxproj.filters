@@ -166,6 +166,9 @@
     <Filter Include="Header Files\Game\Effect">
       <UniqueIdentifier>{e41cfe7f-3d67-4e35-9fa5-5d35aeabaed8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Info">
+      <UniqueIdentifier>{60414a92-482a-458e-b596-aa1e701338f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="src\Note.cpp">
       <Filter>Header Files\Game\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SongInfo.cpp">
+      <Filter>Header Files\Game\Info</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -816,6 +822,7 @@
     <None Include="App\config.ini">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\.gitignore" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\test.mp3">
@@ -893,9 +900,6 @@
     <ClInclude Include="src\SemVer.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="src\SongInfo.hpp">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="src\CrawlingText.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
@@ -905,9 +909,6 @@
     <ClInclude Include="src\Note.hpp">
       <Filter>Header Files\Game\Note</Filter>
     </ClInclude>
-    <ClInclude Include="src\Beatmap.hpp">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="src\Effect\JudgeView.hpp">
       <Filter>Header Files\Game\Effect</Filter>
     </ClInclude>
@@ -916,6 +917,12 @@
     </ClInclude>
     <ClInclude Include="src\Scene\SettingScene.hpp">
       <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SongInfo.hpp">
+      <Filter>Header Files\Game\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beatmap.hpp">
+      <Filter>Header Files\Game\Info</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
