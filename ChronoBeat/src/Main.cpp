@@ -101,7 +101,7 @@ void Main() {
 
 		// 映画のように線が出るように
 		int32 randomLineX = Random(Globals::windowSize.x);
-		Scene::Rect().left().moveBy(randomLineX, 0).draw(Palette::Black.withAlpha(153));
+		Scene::Rect().left().movedBy(randomLineX, 0).draw(Palette::Black.withAlpha(153));
 
 		Circle{ Scene::Center(), Globals::windowSize.x }
 			.draw(ColorF{ .0, .0 }, Palette::Black.withAlpha(128));

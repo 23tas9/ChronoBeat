@@ -12,13 +12,13 @@ Note::Note(int32 _lane, double t, double sp = 1.0) :
 std::shared_ptr<Note> Note::Make(NoteType ntype, int32 lane, double t, double sp = 1.0) {
 	if (ntype == NoteType::Tap) return std::make_shared<TapNote>(lane, t, sp);
 	if (ntype == NoteType::Stay) return std::make_shared<StayNote>(lane, t, sp);
-	if (ntype == NoteType::Hold) throw Error{ U"Hold note need length argment" };
+	if (ntype == NoteType::Hold) throw Error{ U"Hold note needs length argment" };
 
 	return nullptr;
 }
 
 std::shared_ptr<Note> Note::Make(NoteType ntype, int32 lane, double t, double len, double sp = 1.0) {
-	if (ntype != NoteType::Hold) throw Error{ U"!Hold note don't use length argment" };
+	if (ntype != NoteType::Hold) throw Error{ U"!Hold note doesn't use length argment" };
 
 	return std::make_shared<HoldNote>(lane, t, len, sp);
 }
