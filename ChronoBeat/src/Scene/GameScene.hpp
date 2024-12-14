@@ -61,7 +61,9 @@ public:
 	}
 
 	void update() override {
+#if SIV3D_BUILD(DEBUG)
 		if (SimpleGUI::CheckBox(m_isAutomode, U"Auto", { 10, 10 }));
+#endif
 		/*
 		if (SimpleGUI::Slider(Globals::speed, 1.0, 100.0, { 10, 80 }));
 		*/
