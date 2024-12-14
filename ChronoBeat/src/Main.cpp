@@ -18,7 +18,7 @@ void Main() {
 	///////////////////
 
 	// font
-	if (not FontAsset::Register(U"Font.UI.Title", 80, Globals::Fonts::cinecaption, FontStyle::Default))
+	if (not FontAsset::Register(U"Font.UI.Title", 128, Globals::Fonts::cinecaption, FontStyle::Default))
 		throw AssetRegistError(U"Font.UI.Title");
 	if (not FontAsset::Register(U"Font.UI.Detail", 24, Globals::Fonts::mamelon, FontStyle::Default))
 		throw AssetRegistError(U"Font.UI.Detail");

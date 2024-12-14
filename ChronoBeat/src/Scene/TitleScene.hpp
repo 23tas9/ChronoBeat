@@ -103,9 +103,9 @@ public:
 		for (auto i : step(60)) {
 			const double theta = i * 6_deg;
 			const bool isHour = i % 5 == 0;
-			const Vec2 pos = OffsetCircular(center, r * scale, theta);
+			const Vec2 pos = OffsetCircular(center, r * scale - 1, theta);
 
-			Line{ pos.lerp(center, isHour ? 0.1 : 0.05), pos }.draw(4, bColor, eColor);
+			Line{ pos.lerp(center, isHour ? 0.2 : 0.1), pos }.draw(4, bColor, eColor);
 		}
 
 		// 時計の針
