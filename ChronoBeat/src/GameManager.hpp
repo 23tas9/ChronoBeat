@@ -124,7 +124,12 @@ public:
 
 			rect.draw(Palette::Black).drawFrame(1.0, Palette::White);
 
-			if (Globals::controllKeys[static_cast<LaneType>(i)].pressed()) {
+			const InputGroup& key = Globals::controllKeys[static_cast<LaneType>(i)];
+
+			FontAsset(U"Font.UI.Detail")(key.inputs().front().name())
+				.draw(Arg::topCenter = Vec2{ rect.centerX(), Globals::judgeLineY + 60.0 });
+
+			if (key.pressed()) {
 				RectF{ x, Globals::judgeLineY - Globals::windowSize.y / 2.0, Globals::laneWidth, Globals::windowSize.y / 2.0 }
 					.draw(Arg::top = ColorF{ Palette::Yellow, .0 }, Arg::bottom = ColorF{ Palette::Yellow, .25 });
 			}
