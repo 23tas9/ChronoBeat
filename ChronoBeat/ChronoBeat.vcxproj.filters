@@ -823,6 +823,7 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="..\.gitignore" />
+    <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\test.mp3">
