@@ -176,11 +176,6 @@
     <None Include="..\.gitignore" />
     <None Include="..\README.md" />
     <None Include=".editorconfig" />
-    <None Include="App\beatmap\Aleph-0\info.ini" />
-    <None Include="App\beatmap\Doppelganger\info.ini" />
-    <None Include="App\beatmap\Lyrith\easy.json" />
-    <None Include="App\beatmap\Lyrith\info.ini" />
-    <None Include="App\beatmap\Wizdomiot\info.ini" />
     <None Include="App\config.ini" />
     <None Include="App\dll\soundtouch\SoundTouch_x64.dll" />
     <None Include="App\engine\font\fontawesome\fontawesome-brands.otf.zstdcmp" />
