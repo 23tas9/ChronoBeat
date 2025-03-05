@@ -7,6 +7,14 @@
 
 ポストする際のハッシュタグは #ChronoBeat でお願いします。
 
+## ゲーム画面 | Game Images
+設定画面 | Settings Screen
+![Settings Screen Image](https://raw.githubusercontent.com/23tas9/ChronoBeat/refs/heads/master/ChronoBeat/App/resource/images/settings.png)
+
+ゲームプレイ画面 | Game Play Screen
+![Game Play Screen Image](https://raw.githubusercontent.com/23tas9/ChronoBeat/refs/heads/master/ChronoBeat/App/resource/images/playing.png)
+
+
 ## 収録曲 | Included Songs
 <table>
   <thead>
