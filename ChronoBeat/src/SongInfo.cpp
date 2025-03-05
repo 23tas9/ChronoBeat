@@ -42,7 +42,7 @@ SongInfo SongInfo::registerAsset() const {
 	AudioAsset::Load(songName);
 	TextureAsset::Load(textureName);
 
-	return std::move(*this);
+	return *this;
 }
 
 inline String SongInfo::getJacketAssetName() const {
