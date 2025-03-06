@@ -12,7 +12,7 @@
 
 **/App/songinfo.json
 
-**/src/_enviroinment.hpp
+**/src/_environment.hpp
 
 # User-specific files
 *.rsuser
