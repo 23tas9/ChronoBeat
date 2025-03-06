@@ -99,12 +99,18 @@ public:
 	}
 
 	void draw(double t) const {
+		// レーン
 		drawLane();
 
+		// note
 		for (const auto& note : m_beatmap.notes) {
 			note->draw(t, scroll);
 		}
 
+		// measure line
+		drawMeasureLines(t);
+
+		// combo
 		{
 			double x = Globals::laneStartX + (Globals::laneWidth * (Globals::laneNum / 2));
 
@@ -120,20 +126,49 @@ public:
 		for (int32 i : step(Globals::laneNum)) {
 			double x = Globals::laneStartX + (Globals::laneWidth * i);
 
+			// lane
 			RectF rect{ x, .0, Globals::laneWidth, Globals::windowSize.y };
-
 			rect.draw(Palette::Black).drawFrame(1.0, Palette::White);
 
 			const InputGroup& key = Globals::controllKeys[static_cast<LaneType>(i)];
 
 			FontAsset(U"Font.UI.Detail")(key.inputs().front().name())
-				.draw(Arg::topCenter = Vec2{ rect.centerX(), Globals::judgeLineY + 60.0 });
+				.draw(Arg::topCenter = Vec2{ rect.centerX(), Globals::judgeLineY + 60.0 }, Palette::White);
 
+			// key beam
 			if (key.pressed()) {
 				RectF{ x, Globals::judgeLineY - Globals::windowSize.y / 2.0, Globals::laneWidth, Globals::windowSize.y / 2.0 }
 					.draw(Arg::top = ColorF{ Palette::Yellow, .0 }, Arg::bottom = ColorF{ Palette::Yellow, .25 });
 			}
 		}
+	}
+
+	void drawMeasureLines(double t) const {
+		// 1小節の時間
+		double measureDuration = 4.0 * (60.0 / m_beatmap.bpm);
+
+		int32 startMeasure = static_cast<int32>(
+			(t - (m_beatmap.offset / 1000))
+			/ measureDuration
+		);
+
+		int32 i = startMeasure;
+		double y = 0.0;
+
+		do {
+			double measureTime = i * measureDuration + m_beatmap.offset;
+
+			y = Globals::judgeLineY - ((measureTime - t) * Globals::defaultNoteSpeed) * (Globals::speed * scroll);
+
+			Console << U"Drawed Measure at {}"_fmt(y);
+
+			Line{
+				Globals::laneStartX, y,
+				Globals::laneStartX + Globals::laneWidth * Globals::laneNum, y
+			}.draw(1.0, Palette::White);
+
+			i++;
+		} while (0 <= y && y < Globals::windowSize.y);
 	}
 
 	void drawJudgeLine() const {

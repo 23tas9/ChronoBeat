@@ -34,19 +34,19 @@ public:
 	GameScene(const InitData& init) : IScene(init) {
 		m_info = Globals::songInfos[getData().infoIndex];
 
-		const BeatmapInfo& beatmapInfo = m_info.beatmapInfos[getData().currentDifficulty];
-		const Beatmap& beatmap{ beatmapInfo.jsonPath };//{ U"E:/Program Files/NoteEditor/Beatmap/Notes/03_Dogbite.json" };
-
-		m_metronomeMergin = 60.0 / beatmap.bpm / m_gameSpeed;
-
-		m_game = GameManager{ beatmap };
-
 		m_song = AudioAsset(m_info.getSongAssetName());
 
 		m_song.setLoop(false);
 		m_song.setVolume(Globals::Settings::songVolume);
 
 		m_jacketImage = TextureAsset(m_info.getJacketAssetName());
+
+		const BeatmapInfo& beatmapInfo = m_info.beatmapInfos[getData().currentDifficulty];
+		const Beatmap& beatmap{ beatmapInfo.jsonPath, m_song.lengthSec() };
+
+		m_metronomeMergin = 60.0 / beatmap.bpm / m_gameSpeed;
+
+		m_game = GameManager{ beatmap };
 
 		m_playCount
 			.set(U"Ready", { 0.0s, 0.0 }, { 1.0s, 1.0 }, EaseOutCubic)

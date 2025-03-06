@@ -6,6 +6,7 @@ struct Beatmap {
 
 	double bpm = 0.0;
 	double offset = 0.0;
+	double length = 0.0;
 
 	Array<std::shared_ptr<Note>> notes;
 
@@ -13,7 +14,7 @@ struct Beatmap {
 
 	Beatmap() = default;
 
-	Beatmap(const FilePath& path, bool timingOffset = true) : json{ JSON::Load(Resource(path)) } {
+	Beatmap(const FilePath& path, double _length, bool timingOffset = true) : json{ JSON::Load(Resource(path)) }, length{ _length } {
 		bpm = json[U"BPM"].get<double>();
 
 		offset = (json[U"offset"].get<double>() / 1000) +
