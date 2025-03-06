@@ -157,6 +157,9 @@
     <Filter Include="Header Files\Game\Info">
       <UniqueIdentifier>{60414a92-482a-458e-b596-aa1e701338f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\_beatmap\DogBite">
+      <UniqueIdentifier>{9ac038fe-1ff7-4d56-aa44-7e39a4c08a5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -244,6 +247,9 @@
     </Image>
     <Image Include="App\example\obj\siv3d-kun-eye.png">
       <Filter>Resource Files\example\obj</Filter>
+    </Image>
+    <Image Include="App\beatmap\Dogbite\jacket.png">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -797,6 +803,18 @@
     </None>
     <None Include="..\.gitignore" />
     <None Include="..\README.md" />
+    <None Include="App\beatmap\Dogbite\easy.json">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
+    </None>
+    <None Include="App\beatmap\Dogbite\hard.json">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
+    </None>
+    <None Include="App\beatmap\Dogbite\normal.json">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
+    </None>
+    <None Include="App\songinfo.json">
+      <Filter>Resource Files\_beatmap</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\test.mp3">
@@ -807,6 +825,9 @@
     </Media>
     <Media Include="App\example\shot.mp3">
       <Filter>Resource Files\example</Filter>
+    </Media>
+    <Media Include="App\beatmap\Dogbite\song.wav">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
     </Media>
   </ItemGroup>
   <ItemGroup>
