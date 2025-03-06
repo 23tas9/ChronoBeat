@@ -111,7 +111,7 @@ JudgeType TapNote::update(double t) {
 void TapNote::draw(double t, double scroll) const {
 	const Vec2 pos = calcPos(t, scroll);
 
-	RectF rect{ pos.x, pos.y, Globals::laneWidth - Note::NoteMergin, Globals::noteHeight };
+	RectF rect{ pos.x, pos.y - Globals::noteHeight / 2, Globals::laneWidth - Note::NoteMergin, Globals::noteHeight };
 
 	rect.rounded(2).draw();
 }
@@ -196,7 +196,8 @@ void HoldNote::draw(double t, double scroll) const {
 	const Vec2 pos = calcPos(t, scroll);
 	const double target = calcY(t - length, scroll);
 
-	RectF rect{ pos.x, target + (Globals::noteHeight / 2), Globals::laneWidth - Note::NoteMergin, pos.y - target + (Globals::noteHeight / 2) };
+	// to -> from
+	RectF rect{ pos.x, target - (Globals::noteHeight / 2), Globals::laneWidth - Note::NoteMergin, pos.y - target + (Globals::noteHeight) };
 
 	rect.rounded(2).draw(isHolding ? Palette::Gray : Palette::White);
 }
@@ -227,7 +228,7 @@ JudgeType StayNote::update(double t) {
 void StayNote::draw(double t, double scroll) const {
 	const Vec2 pos = calcPos(t, scroll);
 
-	RectF rect{ pos.x, pos.y, Globals::laneWidth - Note::NoteMergin, Globals::noteHeight };
+	RectF rect{ pos.x, pos.y - Globals::noteHeight / 2, Globals::laneWidth - Note::NoteMergin, Globals::noteHeight };
 
 	rect.rounded(2).draw(Palette::Yellow);
 }
