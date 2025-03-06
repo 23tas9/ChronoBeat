@@ -160,8 +160,6 @@ public:
 
 			y = Globals::judgeLineY - ((measureTime - t) * Globals::defaultNoteSpeed) * (Globals::speed * scroll);
 
-			Console << U"Drawed Measure at {}"_fmt(y);
-
 			Line{
 				Globals::laneStartX, y,
 				Globals::laneStartX + Globals::laneWidth * Globals::laneNum, y
