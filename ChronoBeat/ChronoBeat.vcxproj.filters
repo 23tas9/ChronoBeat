@@ -919,5 +919,8 @@
     <ClInclude Include="src\Beatmap.hpp">
       <Filter>Header Files\Game\Info</Filter>
     </ClInclude>
+    <ClInclude Include="src\_environment.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

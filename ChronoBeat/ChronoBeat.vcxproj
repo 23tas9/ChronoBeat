@@ -358,6 +358,7 @@
     <ClInclude Include="src\SemVer.hpp" />
     <ClInclude Include="src\SongInfo.hpp" />
     <ClInclude Include="src\stdafx.h" />
+    <ClInclude Include="src\_environment.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App\example\obj\blacksmith.obj">
