@@ -53,7 +53,7 @@ namespace LeaderBoard {
 	/// @param url サーバの URL
 	/// @param count 取得上限数
 	/// @return タスク
-	inline AsyncHTTPTask CreateGetTask(const URLView url, const StringView sheetname, int32 count = 10)
+	inline AsyncHTTPTask CreateGetTask(const URLView url, const StringView sheetname, int32 count = 5)
 	{
 		// GET リクエストの URL を作成する
 		const URL requestURL = U"{}?sheet={}&count={}"_fmt(url, sheetname, count);
