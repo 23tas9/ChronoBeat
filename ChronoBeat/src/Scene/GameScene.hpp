@@ -63,10 +63,10 @@ public:
 	void update() override {
 #if SIV3D_BUILD(DEBUG)
 		if (SimpleGUI::CheckBox(m_isAutomode, U"Auto", { 10, 10 }));
+		if (SimpleGUI::Slider(U"speed", m_gameSpeed, 0.25, 10.0, Vec2{ 10, 60 }, 80, 120, m_isPlayed)) {
+			m_song.setSpeed(m_gameSpeed);
+		}
 #endif
-		/*
-		if (SimpleGUI::Slider(Globals::speed, 1.0, 100.0, { 10, 80 }));
-		*/
 
 		if (not m_playCount.isDone()) return;
 		if (not m_metronomeTimer.isStarted()) m_metronomeTimer.start();
@@ -84,7 +84,7 @@ public:
 
 		const double now = m_songTimer.sF();
 
-		if (4 <= m_metronomeCount) {
+		if (4 < m_metronomeCount) {
 			if (not m_isPlayed) {
 				m_song.play();
 				m_isPlayed = true;
@@ -97,7 +97,7 @@ public:
 			m_metronomeTimer.set(SecondsF{ currentTimer - m_metronomeMergin });
 		}
 
-		m_game.update(now * m_gameSpeed, m_isAutomode);
+		m_game.update(Min(now - m_metronomeMergin, m_metronomeMergin * 4) + m_song.posSec(), m_isAutomode);
 	}
 
 	void draw() const override {
@@ -137,7 +137,7 @@ public:
 			}
 		}
 
-		m_game.draw(now * m_gameSpeed);
+		m_game.draw(Min(now - m_metronomeMergin, m_metronomeMergin * 4) + m_song.posSec());
 
 		// Ready?
 		if (not m_playCount.isDone()) {
