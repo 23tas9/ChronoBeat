@@ -922,5 +922,11 @@
     <ClInclude Include="src\_environment.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="src\LeaderBoard.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LoadingCircle.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

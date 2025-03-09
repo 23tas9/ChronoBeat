@@ -10,6 +10,8 @@
 #include "Scene/GameScene.hpp"
 #include "Scene/ResultScene.hpp"
 
+#include "LoadingCircle.hpp"
+
 void Main() {
 	Window::SetTitle(Globals::gameVersion.withTitle(Globals::gameTitle));
 
@@ -58,6 +60,9 @@ void Main() {
 	// texture
 	if (not TextureAsset::Register(U"Tex.UI.Setting", 0xf013_icon, 80))
 		throw AssetRegistError(U"Tex.UI.Setting");
+
+	// アドオンの登録
+	Addon::Register<LoadingCircleAddon>(U"LoadingCircleAddon");
 
 	//////////////
 	// game init

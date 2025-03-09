@@ -347,6 +347,8 @@
     <ClInclude Include="src\Globals.hpp" />
     <ClInclude Include="src\JudgeType.hpp" />
     <ClInclude Include="src\LaneType.hpp" />
+    <ClInclude Include="src\LeaderBoard.hpp" />
+    <ClInclude Include="src\LoadingCircle.hpp" />
     <ClInclude Include="src\Note.hpp" />
     <ClInclude Include="src\NoteType.hpp" />
     <ClInclude Include="src\Scene\Common.hpp" />
