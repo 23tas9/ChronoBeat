@@ -24,7 +24,12 @@ struct TitleScene : public App::Scene {
 
 public:
 	TitleScene(const InitData& init) : IScene(init) {
+		System::SetTerminationTriggers(UserAction::Default);
+	}
 
+	~TitleScene() {
+		// escapeで消えないように
+		System::SetTerminationTriggers(UserAction::CloseButtonClicked);
 	}
 
 	void update() override {
@@ -72,6 +77,9 @@ public:
 
 	void draw() const override {
 		drawBackgroundClock();
+
+		FontAsset(U"Font.UI.Detail")(U"Escapeで終了").draw(Arg::bottomLeft = Scene::Rect().bl().movedBy(32, -32));
+
 		drawLetterBox();
 		drawTitle();
 	}

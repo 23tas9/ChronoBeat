@@ -179,7 +179,7 @@ public:
 		if (not bgm.isActive()) bgm.play();
 		bgm.setVolume(Globals::Settings::bgmVolume);
 
-		if (backButton.leftClicked()) {
+		if (backButton.leftClicked() || KeyEscape.down()) {
 			changeScene(SceneState::Select, Globals::sceneTransitionTime);
 		}
 

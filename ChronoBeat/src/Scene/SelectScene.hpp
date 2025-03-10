@@ -51,10 +51,16 @@ public:
 
 	}
 
+	~SelectScene() {
+		m_song.stop();
+	}
+
 	void update() override {
+		if (KeyEscape.down()) {
+			changeScene(SceneState::Title, Globals::sceneTransitionTime);
+		}
 
 		if (settingTexture.regionAt(SettingTexPos).leftClicked()) {
-			m_song.stop();
 			changeScene(SceneState::Setting, Globals::sceneTransitionTime);
 		}
 
@@ -248,8 +254,6 @@ public:
 		getData().infoIndex = m_selectInfoIndex;
 
 		AudioAsset(U"Audio.UI.SongSelected").playOneShot(Globals::Settings::effectVolume);
-
-		m_song.stop();
 
 		changeScene(SceneState::Game, Globals::sceneTransitionTime);
 	}
