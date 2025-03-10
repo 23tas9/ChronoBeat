@@ -5,6 +5,8 @@
 #include "SongInfo.hpp"
 #include "Config.hpp"
 
+#include "LeaderBoard.hpp"
+
 namespace Globals {
 	// Window
 	inline const String gameTitle = U"Chrono Beat";
@@ -51,6 +53,8 @@ namespace Globals {
 	inline double speed = Config.getValue<double>(U"Game.speed", 1.0);
 
 	inline const Duration sceneTransitionTime = 0.75s;
+
+	inline const size_t maxUsernameCharCount = 12;
 
 	namespace Fonts {
 		inline const String cinecaption = Resource(U"resource/font/cinecaption226.ttf");
@@ -121,4 +125,6 @@ namespace Globals {
 		{ JudgeType::Near, U"Near" },
 		{ JudgeType::Miss, U"Miss" }
 	};
+
+	inline HashTable<String, Array<LeaderBoard::Record>> records;
 };

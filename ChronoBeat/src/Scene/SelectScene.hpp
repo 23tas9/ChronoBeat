@@ -21,6 +21,9 @@ class SelectScene : public App::Scene {
 
 	static constexpr Vec2 TileBaseCenter = Globals::windowSize / 2;
 
+	//
+	static constexpr Size RankingAreaSize{ 400, 300 };
+
 	double m_tileOffsetX = .0;
 	double m_tileOffsetVelocityX = .0;
 	double m_selectableTileWidth = 0.5;
@@ -200,6 +203,30 @@ public:
 				.drawAt(difficultyRegion.center());
 
 			difficultyRegion.drawFrame(2.0, Palette::White);
+		}
+
+		// ranking
+		{
+			RectF area{ Arg::center = TileBaseCenter.movedBy(-RankingAreaSize.x * 1.2, 0), RankingAreaSize};
+
+			const auto& ranking = Globals::records[m_infos[m_selectInfoIndex].title];
+
+			Vec2 pos = area.pos.movedBy(16, 16);
+
+			area.drawFrame(1.0, Palette::White);
+
+			if (ranking.isEmpty()) {
+				FontAsset(U"Font.UI.Normal")(U"No Data.").drawAt(area.center());
+			}
+			else {
+				for (const auto& [rank, record] : Indexed(ranking)) {
+					FontAsset(U"Font.UI.Normal")(U"{}."_fmt(rank + 1)).draw(pos, Palette::Orange);
+					FontAsset(U"Font.UI.Normal")(record.userName).draw(pos.movedBy(48, 0));
+					FontAsset(U"Font.UI.Normal")(U"{:.2f}"_fmt(record.score)).draw(pos.movedBy(RankingAreaSize.x / 1.5, 0));
+
+					pos.moveBy(0, 60);
+				}
+			}
 		}
 
 		settingTexture.drawAt(SettingTexPos);

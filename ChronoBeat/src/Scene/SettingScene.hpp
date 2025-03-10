@@ -155,7 +155,7 @@ public:
 	SettingScene(const InitData& init) : IScene(init) {
 		Vec2 pos = UIStartPos.movedBy(UITextWidth, 0);
 
-		usernameUI = { pos, Globals::Settings::username, 12 };
+		usernameUI = { pos, Globals::Settings::username, Globals::maxUsernameCharCount };
 
 		masterVolumeUI = { pos.moveBy(0, NumberUI::UIHeight + NumberUI::ButtonMergin), Globals::Settings::masterVolume, 0.1, 1.0, 0.1 };
 		songVolumeUI = { pos.moveBy(0, NumberUI::UIHeight + NumberUI::ButtonMergin), Globals::Settings::songVolume, 0.1, 1.0, 0.1 };
