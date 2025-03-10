@@ -52,12 +52,6 @@ public:
 			.set(U"Ready", { 0.0s, 0.0 }, { 1.0s, 1.0 }, EaseOutCubic)
 			.set(U"Ready", { 4.0s, 1.0 }, { 4.0s + SecondsF{ m_metronomeMergin }, 0.0 }, EaseInCubic)
 			.start();
-
-		//System::SetTerminationTriggers(UserAction::NoAction);
-	}
-
-	~GameScene() {
-		System::SetTerminationTriggers(UserAction::Default);
 	}
 
 	void update() override {
