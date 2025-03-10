@@ -10,7 +10,7 @@
 namespace Globals {
 	// Window
 	inline const String gameTitle = U"Chrono Beat";
-	inline const SemVer gameVersion{ 0, 0, 1, U"beta" };
+	inline const SemVer gameVersion{ 0, 0, 2, U"beta" };
 
 	inline constexpr Size windowSize{ 1920, 1080 };
 
