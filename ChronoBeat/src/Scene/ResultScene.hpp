@@ -58,10 +58,14 @@ public:
 	}
 
 	void update() override {
+		String songTitle = Globals::songInfos[getData().infoIndex].title;
+
 		if (m_scoreGetTask.has_value()) {
 			if (m_scoreGetTask->isReady()) {
 				if (const auto response = m_scoreGetTask->getResponse(); response.isOK()) {
 					if (LeaderBoard::ReadLeaderboard(m_scoreGetTask->getAsJSON(), m_records)) {
+						Globals::records[songTitle] = m_records;
+
 						m_rankingTable = LeaderBoard::ToTable(m_records);
 					}
 					else {
@@ -76,7 +80,7 @@ public:
 		if (m_scorePostTask.has_value()) {
 			if (m_scorePostTask->isReady()) {
 				if (const auto response = m_scorePostTask->getResponse(); response.isOK()) {
-					m_scoreGetTask = LeaderBoard::CreateGetTask(Environment::LeaderboardURLRaw, Globals::songInfos[getData().infoIndex].title, 5);
+					m_scoreGetTask = LeaderBoard::CreateGetTask(Environment::LeaderboardURLRaw, songTitle, 5);
 				}
 				else {
 					Print << U"Failed to submit the score.";
