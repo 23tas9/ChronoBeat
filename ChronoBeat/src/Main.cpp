@@ -10,6 +10,10 @@
 #include "Scene/GameScene.hpp"
 #include "Scene/ResultScene.hpp"
 
+#include "LoadingCircle.hpp"
+#include "LeaderBoard.hpp"
+#include "_environment.hpp"
+
 void Main() {
 	Window::SetTitle(Globals::gameVersion.withTitle(Globals::gameTitle));
 
@@ -18,8 +22,10 @@ void Main() {
 	///////////////////
 
 	// font
-	if (not FontAsset::Register(U"Font.UI.Title", 80, Globals::Fonts::cinecaption, FontStyle::Default))
+	if (not FontAsset::Register(U"Font.UI.Title", 128, Globals::Fonts::cinecaption, FontStyle::Default))
 		throw AssetRegistError(U"Font.UI.Title");
+	if (not FontAsset::Register(U"Font.UI.SubTitle", 64, Globals::Fonts::mamelon, FontStyle::Default))
+		throw AssetRegistError(U"Font.UI.SubTitle");
 	if (not FontAsset::Register(U"Font.UI.Detail", 24, Globals::Fonts::mamelon, FontStyle::Default))
 		throw AssetRegistError(U"Font.UI.Detail");
 	if (not FontAsset::Register(U"Font.UI.Normal", 32, Globals::Fonts::mamelon, FontStyle::Default))
@@ -59,6 +65,9 @@ void Main() {
 	if (not TextureAsset::Register(U"Tex.UI.Setting", 0xf013_icon, 80))
 		throw AssetRegistError(U"Tex.UI.Setting");
 
+	// アドオンの登録
+	Addon::Register<LoadingCircleAddon>(U"LoadingCircleAddon");
+
 	//////////////
 	// game init
 	//////////////
@@ -74,6 +83,8 @@ void Main() {
 
 	manager.init(SceneState::Title, Globals::sceneTransitionTime);
 
+	HashTable<String, AsyncHTTPTask> rankingRequests;
+
 	/////////////////////
 	// songs and jacket
 	/////////////////////
@@ -82,6 +93,9 @@ void Main() {
 		SongInfo info{ data };
 
 		Globals::songInfos << info.registerAsset();
+
+		rankingRequests[info.title] = LeaderBoard::CreateGetTask(Environment::LeaderboardURLRaw, info.title, 5);
+		Globals::records[info.title] = {};
 	}
 
 #if SIV3D_BUILD(DEBUG)
@@ -99,9 +113,42 @@ void Main() {
 	while (System::Update()) {
 		if (not manager.update()) break;
 
+		// ランキング読み込み
+		if (0 < rankingRequests.size()) {
+			for (auto it = rankingRequests.begin(); it != rankingRequests.end();) {
+				auto& title = it->first;
+				auto& request = it->second;
+
+				if (not request.isReady()) {
+					++it;
+					continue;
+				}
+
+				if (const auto response = request.getResponse(); response.isOK()) {
+					if (not LeaderBoard::ReadLeaderboard(request.getAsJSON(), Globals::records[title])) {
+						Print << U"Failed to read the leaderboard.";
+					}
+#if SIV3D_BUILD(DEBUG)
+					else {
+						Console << U"Request completed: " << title;
+
+						for (auto&& record : Globals::records[title]) {
+							Console << U"{}: {}"_fmt(record.userName, record.score);
+						}
+					}
+#endif
+
+					it = rankingRequests.erase(it);
+				}
+				else {
+					++it;
+				}
+			}
+		}
+
 		// 映画のように線が出るように
 		int32 randomLineX = Random(Globals::windowSize.x);
-		Scene::Rect().left().moveBy(randomLineX, 0).draw(Palette::Black.withAlpha(153));
+		Scene::Rect().left().movedBy(randomLineX, 0).draw(Palette::Black.withAlpha(153));
 
 		Circle{ Scene::Center(), Globals::windowSize.x }
 			.draw(ColorF{ .0, .0 }, Palette::Black.withAlpha(128));

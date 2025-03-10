@@ -126,6 +126,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="App\beatmap\Dogbite\jacket.png" />
     <Image Include="App\engine\texture\box-shadow\128.png" />
     <Image Include="App\engine\texture\box-shadow\16.png" />
     <Image Include="App\engine\texture\box-shadow\256.png" />
@@ -174,12 +175,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
+    <None Include="..\README.md" />
     <None Include=".editorconfig" />
-    <None Include="App\beatmap\Aleph-0\info.ini" />
-    <None Include="App\beatmap\Doppelganger\info.ini" />
-    <None Include="App\beatmap\Lyrith\easy.json" />
-    <None Include="App\beatmap\Lyrith\info.ini" />
-    <None Include="App\beatmap\Wizdomiot\info.ini" />
+    <None Include="App\beatmap\Dogbite\easy.json" />
+    <None Include="App\beatmap\Dogbite\hard.json" />
+    <None Include="App\beatmap\Dogbite\normal.json" />
     <None Include="App\config.ini" />
     <None Include="App\dll\soundtouch\SoundTouch_x64.dll" />
     <None Include="App\engine\font\fontawesome\fontawesome-brands.otf.zstdcmp" />
@@ -317,8 +317,10 @@
     <None Include="App\example\toml\config.toml" />
     <None Include="App\example\toml\test.toml" />
     <None Include="App\example\zip\zip_test.zip" />
+    <None Include="App\songinfo.json" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="App\beatmap\Dogbite\song.wav" />
     <Media Include="App\example\shot.mp3" />
     <Media Include="App\example\test.mp3" />
     <Media Include="App\example\video\river.mp4" />
@@ -345,6 +347,8 @@
     <ClInclude Include="src\Globals.hpp" />
     <ClInclude Include="src\JudgeType.hpp" />
     <ClInclude Include="src\LaneType.hpp" />
+    <ClInclude Include="src\LeaderBoard.hpp" />
+    <ClInclude Include="src\LoadingCircle.hpp" />
     <ClInclude Include="src\Note.hpp" />
     <ClInclude Include="src\NoteType.hpp" />
     <ClInclude Include="src\Scene\Common.hpp" />
@@ -356,6 +360,7 @@
     <ClInclude Include="src\SemVer.hpp" />
     <ClInclude Include="src\SongInfo.hpp" />
     <ClInclude Include="src\stdafx.h" />
+    <ClInclude Include="src\_environment.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App\example\obj\blacksmith.obj">

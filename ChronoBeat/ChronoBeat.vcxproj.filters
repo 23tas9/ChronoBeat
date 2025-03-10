@@ -142,18 +142,6 @@
     <Filter Include="Resource Files\_beatmap">
       <UniqueIdentifier>{fdd6cc38-554e-49c3-a650-4f585f73a326}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\_beatmap\Lyrith">
-      <UniqueIdentifier>{626e129e-f2c9-4f72-817c-4705bd16d6e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\_beatmap\Doppelganger">
-      <UniqueIdentifier>{488c8fd8-f9b3-4046-9766-99628db1d27a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\_beatmap\Aleph-0">
-      <UniqueIdentifier>{dec5f5e9-c7b0-4ef3-9878-da0b7ab1cd62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\_beatmap\Wizdomiot">
-      <UniqueIdentifier>{276e009c-cead-4859-9932-e127286d65d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Game">
       <UniqueIdentifier>{542fed70-55af-4005-81ac-c02e43a4a50b}</UniqueIdentifier>
     </Filter>
@@ -168,6 +156,9 @@
     </Filter>
     <Filter Include="Header Files\Game\Info">
       <UniqueIdentifier>{60414a92-482a-458e-b596-aa1e701338f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\_beatmap\DogBite">
+      <UniqueIdentifier>{9ac038fe-1ff7-4d56-aa44-7e39a4c08a5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +247,9 @@
     </Image>
     <Image Include="App\example\obj\siv3d-kun-eye.png">
       <Filter>Resource Files\example\obj</Filter>
+    </Image>
+    <Image Include="App\beatmap\Dogbite\jacket.png">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -804,25 +798,23 @@
     <None Include="App\engine\shader\glsl\quad_warp.frag">
       <Filter>Resource Files\engine\shader\glsl</Filter>
     </None>
-    <None Include="App\beatmap\Lyrith\info.ini">
-      <Filter>Resource Files\_beatmap\Lyrith</Filter>
-    </None>
-    <None Include="App\beatmap\Lyrith\easy.json">
-      <Filter>Resource Files\_beatmap\Lyrith</Filter>
-    </None>
-    <None Include="App\beatmap\Doppelganger\info.ini">
-      <Filter>Resource Files\_beatmap\Doppelganger</Filter>
-    </None>
-    <None Include="App\beatmap\Aleph-0\info.ini">
-      <Filter>Resource Files\_beatmap\Aleph-0</Filter>
-    </None>
-    <None Include="App\beatmap\Wizdomiot\info.ini">
-      <Filter>Resource Files\_beatmap\Wizdomiot</Filter>
-    </None>
     <None Include="App\config.ini">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="..\.gitignore" />
+    <None Include="..\README.md" />
+    <None Include="App\beatmap\Dogbite\easy.json">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
+    </None>
+    <None Include="App\beatmap\Dogbite\hard.json">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
+    </None>
+    <None Include="App\beatmap\Dogbite\normal.json">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
+    </None>
+    <None Include="App\songinfo.json">
+      <Filter>Resource Files\_beatmap</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\test.mp3">
@@ -833,6 +825,9 @@
     </Media>
     <Media Include="App\example\shot.mp3">
       <Filter>Resource Files\example</Filter>
+    </Media>
+    <Media Include="App\beatmap\Dogbite\song.wav">
+      <Filter>Resource Files\_beatmap\DogBite</Filter>
     </Media>
   </ItemGroup>
   <ItemGroup>
@@ -923,6 +918,15 @@
     </ClInclude>
     <ClInclude Include="src\Beatmap.hpp">
       <Filter>Header Files\Game\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="src\_environment.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LeaderBoard.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LoadingCircle.hpp">
+      <Filter>Header Files\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

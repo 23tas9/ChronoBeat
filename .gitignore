@@ -12,6 +12,8 @@
 
 **/App/songinfo.json
 
+**/src/_environment.hpp
+
 # User-specific files
 *.rsuser
 *.suo

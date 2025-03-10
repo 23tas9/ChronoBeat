@@ -5,10 +5,12 @@
 #include "SongInfo.hpp"
 #include "Config.hpp"
 
+#include "LeaderBoard.hpp"
+
 namespace Globals {
 	// Window
 	inline const String gameTitle = U"Chrono Beat";
-	inline const SemVer gameVersion{ 0, 0, 1, U"beta" };
+	inline const SemVer gameVersion{ 0, 0, 2, U"beta" };
 
 	inline constexpr Size windowSize{ 1920, 1080 };
 
@@ -21,11 +23,15 @@ namespace Globals {
 		inline double effectVolume = Config.getValue<double>(U"Volume.effect", 1.0);
 		inline double bgmVolume = Config.getValue<double>(U"Volume.bgm", 0.7);
 
+		inline String username = Config.getValue<String>(U"Profile.username", U"Guest{:0>4d}"_fmt(Random<int32>(9999)));
+
 		inline void reload() {
 			masterVolume = Config.getValue<double>(U"Volume.master", 0.5);
 			songVolume = Config.getValue<double>(U"Volume.song", 1.0);
 			effectVolume = Config.getValue<double>(U"Volume.effect", 1.0);
 			bgmVolume = Config.getValue<double>(U"Volume.bgm", 0.7);
+
+			username = Config.getValue<String>(U"Profile.username", U"Guest{:0>4d}"_fmt(Random<int32>(9999)));
 
 			GlobalAudio::SetVolume(masterVolume);
 		}
@@ -47,6 +53,8 @@ namespace Globals {
 	inline double speed = Config.getValue<double>(U"Game.speed", 1.0);
 
 	inline const Duration sceneTransitionTime = 0.75s;
+
+	inline const size_t maxUsernameCharCount = 12;
 
 	namespace Fonts {
 		inline const String cinecaption = Resource(U"resource/font/cinecaption226.ttf");
@@ -117,4 +125,6 @@ namespace Globals {
 		{ JudgeType::Near, U"Near" },
 		{ JudgeType::Miss, U"Miss" }
 	};
+
+	inline HashTable<String, Array<LeaderBoard::Record>> records;
 };

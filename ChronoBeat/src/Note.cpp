@@ -12,13 +12,13 @@ Note::Note(int32 _lane, double t, double sp = 1.0) :
 std::shared_ptr<Note> Note::Make(NoteType ntype, int32 lane, double t, double sp = 1.0) {
 	if (ntype == NoteType::Tap) return std::make_shared<TapNote>(lane, t, sp);
 	if (ntype == NoteType::Stay) return std::make_shared<StayNote>(lane, t, sp);
-	if (ntype == NoteType::Hold) throw Error{ U"Hold note need length argment" };
+	if (ntype == NoteType::Hold) throw Error{ U"Hold note needs length argment" };
 
 	return nullptr;
 }
 
 std::shared_ptr<Note> Note::Make(NoteType ntype, int32 lane, double t, double len, double sp = 1.0) {
-	if (ntype != NoteType::Hold) throw Error{ U"!Hold note don't use length argment" };
+	if (ntype != NoteType::Hold) throw Error{ U"!Hold note doesn't use length argment" };
 
 	return std::make_shared<HoldNote>(lane, t, len, sp);
 }
@@ -111,7 +111,7 @@ JudgeType TapNote::update(double t) {
 void TapNote::draw(double t, double scroll) const {
 	const Vec2 pos = calcPos(t, scroll);
 
-	RectF rect{ pos.x, pos.y, Globals::laneWidth - Note::NoteMergin, Globals::noteHeight };
+	RectF rect{ pos.x, pos.y - Globals::noteHeight / 2, Globals::laneWidth - Note::NoteMergin, Globals::noteHeight };
 
 	rect.rounded(2).draw();
 }
@@ -196,7 +196,8 @@ void HoldNote::draw(double t, double scroll) const {
 	const Vec2 pos = calcPos(t, scroll);
 	const double target = calcY(t - length, scroll);
 
-	RectF rect{ pos.x, target + (Globals::noteHeight / 2), Globals::laneWidth - Note::NoteMergin, pos.y - target + (Globals::noteHeight / 2) };
+	// to -> from
+	RectF rect{ pos.x, target - (Globals::noteHeight / 2), Globals::laneWidth - Note::NoteMergin, pos.y - target + (Globals::noteHeight) };
 
 	rect.rounded(2).draw(isHolding ? Palette::Gray : Palette::White);
 }
@@ -227,7 +228,7 @@ JudgeType StayNote::update(double t) {
 void StayNote::draw(double t, double scroll) const {
 	const Vec2 pos = calcPos(t, scroll);
 
-	RectF rect{ pos.x, pos.y, Globals::laneWidth - Note::NoteMergin, Globals::noteHeight };
+	RectF rect{ pos.x, pos.y - Globals::noteHeight / 2, Globals::laneWidth - Note::NoteMergin, Globals::noteHeight };
 
 	rect.rounded(2).draw(Palette::Yellow);
 }
