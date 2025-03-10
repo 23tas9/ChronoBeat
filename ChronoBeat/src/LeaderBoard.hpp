@@ -82,7 +82,7 @@ namespace LeaderBoard {
 	/// @brief リーダーボードから SimpleTable を作成します。
 	/// @param leaderboard リーダーボード
 	/// @return SimpleTable
-	SimpleTable ToTable(const Array<Record>& leaderboard)
+	inline SimpleTable ToTable(const Array<Record>& leaderboard)
 	{
 		SimpleTable table{ { 100, 260, 140 } };
 
