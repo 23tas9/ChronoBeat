@@ -33,13 +33,16 @@ public:
 	}
 
 	void update(double t, bool autoMode = false) {
+		// 判定処理のフラグ
 		std::bitset<4> processedLane = 0b0000;
 
+		// ノーツの更新
 		for (auto&& note : m_beatmap.notes) {
 			JudgeType judge = note->update(t);
 
 			HoldNote* holdNote = dynamic_cast<HoldNote*>(note.get());
 
+			// 自動モード(デバッグ用
 			if (autoMode) {
 				judge = JudgeType::None;
 				if (note->timeDiff(t) <= 0) {
@@ -60,15 +63,19 @@ public:
 				}
 			}
 
+			// 判定範囲外 or 既に処理済みのレーン
 			if (judge == JudgeType::None) continue;
 			if (processedLane[note->lane] & 1) continue;
 
+			// 判定処理済みかどうか
 			int8 state = 1;
 
+			// hold中なら0
 			if (holdNote != nullptr) {
 				if (holdNote->isHolding) state = 0;
 			}
 
+			// ミス以外なら加算
 			if (judge != JudgeType::Miss) {
 				m_noteClickSound.playOneShot(Globals::Settings::effectVolume);
 
@@ -86,13 +93,16 @@ public:
 				}
 			}
 
+			// 判定の表示
 			m_judgeViewer.add<MyEffect::JudgeView>(note->lane, judge);
 
 			m_judges[judge] += 1;
 
+			// 現在レーンに処理済みフラグの適用
 			processedLane[note->lane] = state;
 		}
 
+		// isRemovableなノーツを削除
 		m_beatmap.notes.remove_if([=](const auto& note) {
 			return note->isRemovable;
 		});
@@ -143,6 +153,7 @@ public:
 		}
 	}
 
+	// 小節線を描画
 	void drawMeasureLines(double t) const {
 		// 1小節の時間
 		double measureDuration = 4.0 * (60.0 / m_beatmap.bpm);
@@ -169,6 +180,7 @@ public:
 		} while (0 <= y && y < Globals::windowSize.y);
 	}
 
+	// 判定戦の描画
 	void drawJudgeLine() const {
 		Line judgeLine{
 			Globals::laneStartX, Globals::judgeLineY,

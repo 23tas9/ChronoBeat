@@ -56,10 +56,12 @@ public:
 	}
 
 	void update() override {
+		// ESCでタイトルに戻る
 		if (KeyEscape.down()) {
 			changeScene(SceneState::Title, Globals::sceneTransitionTime);
 		}
 
+		// 設定画面に移動
 		if (settingTexture.regionAt(SettingTexPos).leftClicked()) {
 			changeScene(SceneState::Setting, Globals::sceneTransitionTime);
 		}

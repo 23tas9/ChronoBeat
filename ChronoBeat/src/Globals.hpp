@@ -84,6 +84,7 @@ namespace Globals {
 
 	inline const FilePath BeatmapBaseDir = U"beatmap";
 
+	//判定表示のオフセット
 	inline std::array<double, 3> JudgeViewOffsets = {
 		100,
 		200,
@@ -91,7 +92,7 @@ namespace Globals {
 	};
 	inline size_t judgeViewIndex = Clamp<size_t>(Config.getValue(U"judge_view", 1), 0, JudgeViewOffsets.size());
 
-	// key
+	// 操作キー
 	inline HashTable<LaneType, InputGroup> controllKeys = {
 		{ LaneType::D, KeyD },
 		{ LaneType::F, KeyF },
@@ -99,12 +100,14 @@ namespace Globals {
 		{ LaneType::K, KeyK }
 	};
 
+	// 判定幅(ms
 	inline HashTable<JudgeType, int32> judgeTimings = {
 		{ JudgeType::Perfect, 40 },
 		{ JudgeType::Great, 60 },
 		{ JudgeType::Near, 80 }
 	};
 
+	// 判定のスコア倍率
 	inline HashTable<JudgeType, double> judgeScoreRatio = {
 		{ JudgeType::Perfect, 1.0 },
 		{ JudgeType::Great, 0.8 },
@@ -112,6 +115,7 @@ namespace Globals {
 		{ JudgeType::Miss, 0.0 }
 	};
 
+	// 判定の色
 	inline HashTable<JudgeType, Color> judgeColor = {
 		{ JudgeType::Perfect, Theme::JudgePerfect },
 		{ JudgeType::Great, Theme::JudgeGreat },
@@ -119,6 +123,7 @@ namespace Globals {
 		{ JudgeType::Miss, Theme::JudgeMiss }
 	};
 
+	// 判定名
 	inline HashTable<JudgeType, String> judgeName = {
 		{ JudgeType::Perfect, U"Perfect" },
 		{ JudgeType::Great, U"Great" },
@@ -126,5 +131,6 @@ namespace Globals {
 		{ JudgeType::Miss, U"Miss" }
 	};
 
+	// タイトル毎のランキングスコア
 	inline HashTable<String, Array<LeaderBoard::Record>> records;
 };

@@ -19,7 +19,7 @@ struct ResultScene : public App::Scene {
 
 	double m_score = 0.0;
 
-	String m_scoreRating = U"SS";
+	String m_scoreRating;
 
 	Optional<AsyncHTTPTask> m_scorePostTask;
 	Optional<AsyncHTTPTask> m_scoreGetTask;
@@ -29,6 +29,7 @@ struct ResultScene : public App::Scene {
 	SimpleTable m_rankingTable;
 
 public:
+	// コンストラクタ 最終スコアからシーン初期化
 	ResultScene(const InitData& init) : IScene(init) {
 		auto& data = getData();
 
@@ -40,16 +41,20 @@ public:
 
 		double ratio = 0.0;
 
+		// ノーツ数からスコア割合を計算
 		for (auto&& [key, value] : data.judges) {
 			ratio += value / static_cast<double>(data.combo.second) * Globals::judgeScoreRatio[key];
 		}
 
-		if (ratio < 1.0) m_scoreRating = U"S";
-		if (ratio < 0.9) m_scoreRating = U"AA";
-		if (ratio < 0.8) m_scoreRating = U"A";
-		if (ratio < 0.75) m_scoreRating = U"B";
-		if (ratio < 0.5) m_scoreRating = U"C";
+		// スコア評価
+		m_scoreRating = U"SS";						// =100%
+		if (ratio < 1.0) m_scoreRating = U"S";		// ~100%
+		if (ratio < 0.9) m_scoreRating = U"AA";		// ~90%
+		if (ratio < 0.8) m_scoreRating = U"A";		// ~80%
+		if (ratio < 0.75) m_scoreRating = U"B";		// ~75%
+		if (ratio < 0.5) m_scoreRating = U"C";		// ~50%
 
+		// スコアは割合(MAX100%)
 		m_score = Math::Round(ratio * 10000.0) / 100.0;
 
 		String sheetname = Globals::songInfos[getData().infoIndex].title;
@@ -60,6 +65,7 @@ public:
 	void update() override {
 		String songTitle = Globals::songInfos[getData().infoIndex].title;
 
+		// ランキングスコアの取得
 		if (m_scoreGetTask.has_value()) {
 			if (m_scoreGetTask->isReady()) {
 				if (const auto response = m_scoreGetTask->getResponse(); response.isOK()) {
@@ -77,6 +83,7 @@ public:
 			}
 		}
 
+		// ランキングスコアの登録
 		if (m_scorePostTask.has_value()) {
 			if (m_scorePostTask->isReady()) {
 				if (const auto response = m_scorePostTask->getResponse(); response.isOK()) {
@@ -154,6 +161,7 @@ public:
 			FontAsset(U"Font.UI.Result.2")(U"{:3.2f}%"_fmt(m_score)).draw(Arg::bottomLeft = base.movedBy(160, 0));
 		}
 
+		// 登録中、ロード円の表示
 		if (m_scorePostTask.has_value()) {
 			if (not m_scorePostTask->isReady()) {
 				if (not LoadingCircleAddon::IsActive()) {

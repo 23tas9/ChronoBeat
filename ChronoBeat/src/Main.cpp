@@ -103,6 +103,7 @@ void Main() {
 	Console << Globals::songInfos;
 #endif
 
+	// window初期化
 	Window::Resize(Globals::windowSize);
 	Scene::SetResizeMode(ResizeMode::Keep);
 

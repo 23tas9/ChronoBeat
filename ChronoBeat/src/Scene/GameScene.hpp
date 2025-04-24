@@ -31,6 +31,7 @@ class GameScene : public App::Scene {
 	bool m_isAutomode = false;
 
 public:
+	// コンストラクタ 選択した曲からシーン初期化
 	GameScene(const InitData& init) : IScene(init) {
 		m_info = Globals::songInfos[getData().infoIndex];
 
@@ -56,16 +57,20 @@ public:
 
 	void update() override {
 #if SIV3D_BUILD(DEBUG)
+		// デバッグ用
 		if (SimpleGUI::CheckBox(m_isAutomode, U"Auto", { 10, 10 }));
 		if (SimpleGUI::Slider(U"speed", m_gameSpeed, 0.25, 10.0, Vec2{ 10, 60 }, 80, 120, m_isPlayed)) {
 			m_song.setSpeed(m_gameSpeed);
 		}
 #endif
-
+		// Ready?表記中は更新しない
 		if (not m_playCount.isDone()) return;
+
+		// タイマーの開始
 		if (not m_metronomeTimer.isStarted()) m_metronomeTimer.start();
 		if (not m_songTimer.isStarted()) m_songTimer.start();
 
+		// 曲が終わったらスコアの登録&遷移
 		if (isFinished()) {
 			auto& data = getData();
 
@@ -76,9 +81,12 @@ public:
 			changeScene(SceneState::Result, Globals::sceneTransitionTime);
 		}
 
+		// 曲の現在時間
 		const double now = m_songTimer.sF();
 
+		// メトロノームのカウント
 		if (4 < m_metronomeCount) {
+			// メトロノーム終了時、開始
 			if (not m_isPlayed) {
 				m_song.play();
 				m_isPlayed = true;
@@ -88,9 +96,11 @@ public:
 			AudioAsset(U"Audio.Game.Metronome").playOneShot(Globals::Settings::effectVolume);
 			m_metronomeCount += 1;
 
+			// メトロノームをずらさないようにリセット
 			m_metronomeTimer.set(SecondsF{ currentTimer - m_metronomeMergin });
 		}
 
+		// ゲームの更新
 		m_game.update(Min(now - m_metronomeMergin, m_metronomeMergin * 4) + m_song.posSec(), m_isAutomode);
 	}
 
@@ -119,6 +129,7 @@ public:
 			{
 				Vec2 pos = bl.movedBy(-80, 32);
 
+				// 判定済みリストの表示
 				for (auto&& [key, value] : m_game.getJudges()) {
 					const Color& color = Globals::judgeColor[key];
 					FontAsset(U"Font.Game.Judge.1")(GetJudgeName(key))

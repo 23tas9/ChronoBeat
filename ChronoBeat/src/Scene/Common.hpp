@@ -2,6 +2,7 @@
 #include <Siv3D.hpp>
 #include "../SongInfo.hpp"
 
+// シーン
 enum class SceneState {
 	Title,
 	Select,
@@ -10,6 +11,7 @@ enum class SceneState {
 	Result
 };
 
+// シーンデータ
 struct GameData {
 	size_t infoIndex = 0;
 	SongDifficulty currentDifficulty = SongDifficulty::Hard;
@@ -21,16 +23,19 @@ struct GameData {
 		{ JudgeType::Miss, 0 }
 	};
 
+	// コンボ(プレイ時最大, 譜面最大)
 	std::pair<size_t, size_t> combo = { 0, 0 };
 };
 
 using App = SceneManager<SceneState, GameData>;
 
+// シーン共通
 namespace Common {
 	inline const double CircleRadius = Math::Sqrt(
 		 Math::Pow(Globals::windowSize.x, 2) + Math::Pow(Globals::windowSize.y, 2)
 	);
 
+	// シーン遷移
 	void drawFadeIn(double t) {
 		double progress = Math::Clamp(1.0 - (t / Globals::sceneTransitionTime.count()), 0.0, 1.0);
 
