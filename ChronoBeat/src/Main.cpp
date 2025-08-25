@@ -1,4 +1,4 @@
-﻿#include <Siv3D.hpp> // v0.6.14
+﻿#include <Siv3D.hpp> // v0.6.16
 #include "Globals.hpp"
 #include "Scene/Common.hpp"
 
